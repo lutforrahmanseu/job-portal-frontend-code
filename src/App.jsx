@@ -1,14 +1,10 @@
-import Navbar from "./components/shared/Navbar"
-import { Button } from "./components/ui/button"
-
+import React from 'react'
+import Navbar from './components/shared/Navbar';
 
 function App() {
-  
   return (
-   <div>
-    <Navbar/>
-   </div>
-  )
+    <div><Navbar/></div>
+  );
 }
 
-export default App
+export default App;

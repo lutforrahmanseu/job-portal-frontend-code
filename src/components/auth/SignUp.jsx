@@ -8,6 +8,9 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "sonner";
 import { USER_API_END_POINT } from "@/utils/constant";
+import { Loader2 } from "lucide-react";
+import { useDispatch, useSelector } from "react-redux";
+import { setLoading } from "@/redux/authSlice";
 
 export default function SignUp() {
   const [input, setInput] = useState({
@@ -18,7 +21,9 @@ export default function SignUp() {
     role: "",
     file: "",
   });
+  const { loading } = useSelector((state) => state.auth);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const submitHandler = async (e) => {
     e.preventDefault();
     console.log(input);
@@ -32,6 +37,7 @@ export default function SignUp() {
       formData.append("file", input.file);
     }
     try {
+      dispatch(setLoading(true));
       const res = await axios.post(`${USER_API_END_POINT}/register`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -46,6 +52,9 @@ export default function SignUp() {
     } catch (error) {
       toast.error(error.response.data.message);
       console.log(error);
+    }
+    finally {
+      dispatch(setLoading(false));
     }
   };
   const changeHandler = (e) => {
@@ -140,9 +149,19 @@ export default function SignUp() {
               />
             </div>
           </div>
-          <Button type="submit" className="bg-[#6A38C2] hover:bg-[#6A38C2]/90 ">
-            Sign Up
-          </Button>
+          {loading ? (
+            <Button  className="bg-[#6A38C2] hover:bg-[#6A38C2]/90 w-full ">
+              <Loader2 className="w-4 h-4 animate-spin mr-2" />
+              Please wait
+            </Button>
+          ) : (
+            <Button
+              type="submit"
+              className="bg-[#6A38C2] hover:bg-[#6A38C2]/90 w-full "
+            >
+              Sign Up
+            </Button>
+          )}
           <span className="text-sm text-center">
             Already have an account?{" "}
             <Link to="/login" className="text-[#6A38C2] font-semibold ">

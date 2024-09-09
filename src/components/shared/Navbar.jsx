@@ -4,9 +4,11 @@ import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Avatar, AvatarImage } from "../ui/avatar";
 import { LogOut, User2 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function Navbar() {
-  const user = false;
+ 
+  const {user } =useSelector((state)=>state.auth)
   return (
     <div className="bg-gray-100">
       <div className="flex justify-between items-center mx-auto max-w-7xl h-16 p-4">
@@ -61,7 +63,7 @@ export default function Navbar() {
                     <div className="flex w-fit items-center gap-2  cursor-pointer">
                       <User2 />
                       <Button variant="link" className="">
-                        View Profile
+                        <Link to="/profile">Profile</Link>
                       </Button>
                     </div>
                     <div className="flex w-fit items-center gap-2 cursor-pointer">

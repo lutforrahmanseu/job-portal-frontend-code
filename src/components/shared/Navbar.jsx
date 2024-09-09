@@ -12,7 +12,7 @@ export default function Navbar() {
       <div className="flex justify-between items-center mx-auto max-w-7xl h-16 p-4">
         <div>
           <h1 className="text-3xl font-bold">
-            Job <span className="text-[#F83002]">Portal</span>
+           <Link to="/"> Job <span className="text-[#F83002]">Portal</span></Link>
           </h1>
         </div>
         <div
@@ -20,9 +20,9 @@ export default function Navbar() {
         gap-12"
         >
           <ul className=" hidden md:flex gap-4 items-center font-medium">
-            <li>Home</li>
-            <li>Jobs</li>
-            <li>Browser</li>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to='/jobs'>Jobs</Link></li>
+            <li><Link to="/browser">Browser</Link></li>
           </ul>
           {!user ? (
             <div className="flex gap-4 items-center">

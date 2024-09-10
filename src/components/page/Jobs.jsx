@@ -17,12 +17,14 @@ export default function Jobs() {
 
           {/* job card */}
           {jobs.length <= 0 ? (
-            <span className="text-xl font-bold text-center text-red-2000">Job Not Found</span>
+            <span className="text-xl font-bold text-center text-red-2000">
+              Job Not Found
+            </span>
           ) : (
             <div className="flex-1 h-[88vh] overflow-y-auto pb-5 px-4">
               <div className="grid grid-cols-3  gap-5">
                 {jobs.map((job, index) => (
-                  <JobCard />
+                  <JobCard key={index} />
                 ))}
               </div>
             </div>
